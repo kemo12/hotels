@@ -14,7 +14,7 @@ const Home = () => {
     <div className="homeContainer">
       <div className="homeTilte">
         <h1>Hotels</h1>
-        <Link className="reservations" to="/Reserved">
+        <Link className="" to="/Reserved">
           my reservations
         </Link>
       </div>

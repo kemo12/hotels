@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const Card = ({ cardInfo, isAdmain }) => {
   const { booked, setBooked } = useData();
   let navigate = useNavigate();
-
   const handleBook = () => {
     setBooked([...booked, cardInfo]);
     navigate('/Reserved');
@@ -19,6 +18,10 @@ const Card = ({ cardInfo, isAdmain }) => {
         <div>
           <span>Name:</span>
           <span>{cardInfo.Name}</span>
+        </div>
+        <div>
+          <span>Date:</span>
+          <span>{cardInfo.date}</span>
         </div>
         <div>
           <span>Price:</span>

@@ -3,52 +3,39 @@ import { useData } from './../../Hooks/DataContext';
 import { useState } from 'react';
 
 const Filter = ({ setNoResult, searchResult, setSearchResult }) => {
-  const [choosenCity, setChoosenCity] = useState('All');
+  const [choosenCity, setChoosenCity] = useState('');
   const [range, setRange] = useState(10);
-  const [choosenDate, setChoosenDate] = useState();
   const { data } = useData();
   const cities = data.map((item) => item.City);
   const handleCityChange = (e) => {
     setChoosenCity(e.target.value);
     let res;
-    if (searchResult.length !== 0) {
-      if (choosenCity === 'All') {
-        res = searchResult;
-      } else {
-        res = searchResult.filter(
-          (item) => item.City.toLowerCase() === choosenCity.toLowerCase()
-        );
-        if (res.length === 0) {
-          setSearchResult([]);
-          setNoResult(true);
-        } else {
-          setSearchResult(res);
-          setNoResult(false);
-        }
-      }
+    if (e.target.value === '') {
+      setSearchResult(...data);
     } else {
-      if (choosenCity.toLowerCase() === 'all') {
-        res = data;
+      res = data.filter((item) => {
+        return item.City.toLowerCase() === e.target.value.toLowerCase();
+      });
+      if (res.length === 0) {
+        setNoResult(true);
       } else {
-        res = data.filter(
-          (item) => item.City.toLowerCase() === choosenCity.toLowerCase()
-        );
-        console.log('asd', res);
-        if (res.length === 0) {
-          setNoResult(true);
-          setSearchResult([]);
-        } else {
-          setSearchResult(res);
-          setNoResult(false);
-        }
+        setSearchResult(res);
+        setNoResult(false);
       }
     }
   };
   const handlePriceChange = (e) => {
     setRange(e.target.value);
+    let res = data.filter(
+      (item) => parseInt(e.target.value) >= parseInt(item.Price)
+    );
+    setSearchResult(res);
   };
   const handleDateChange = (e) => {
-    setChoosenDate(e.target.value);
+    let res = data.filter((item) => {
+      return e.target.value === item.date;
+    });
+    setSearchResult(res);
   };
   return (
     <div className="filterContainer">
@@ -60,7 +47,7 @@ const Filter = ({ setNoResult, searchResult, setSearchResult }) => {
           onChange={handleCityChange}
           value={choosenCity}
         >
-          <option value="All">All</option>
+          <option value="">select</option>
           {cities.map((city) => {
             return (
               <option key={city} value={city}>
@@ -76,19 +63,13 @@ const Filter = ({ setNoResult, searchResult, setSearchResult }) => {
           type="range"
           onChange={handlePriceChange}
           min="10"
-          max="1000"
+          max="2500"
           value={range}
         />
       </div>
       <div className="PriceFilter">
         Date:
-        <input
-          type="date"
-          value={choosenDate}
-          onChange={handleDateChange}
-          id="date"
-          name="date"
-        />
+        <input type="date" onChange={handleDateChange} id="date" name="date" />
       </div>
     </div>
   );
