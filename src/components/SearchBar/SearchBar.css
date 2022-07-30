@@ -1,0 +1,13 @@
+.SearchContainer {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  border: 1px solid red;
+  height: 45px;
+}
+.SearchContainer input {
+  width: 100%;
+  color: black;
+  font-size: 1rem;
+  padding-left: 10px;
+}
