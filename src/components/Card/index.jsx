@@ -1,5 +1,15 @@
 import './Card.css';
-const Card = ({ cardInfo }) => {
+import { useData } from './../../Hooks/DataContext';
+import { useNavigate } from 'react-router-dom';
+
+const Card = ({ cardInfo, isAdmain }) => {
+  const { booked, setBooked } = useData();
+  let navigate = useNavigate();
+
+  const handleBook = () => {
+    setBooked([...booked, cardInfo]);
+    navigate('/Reserved');
+  };
   return (
     <div className="cardContainer">
       <div className="cardImg">
@@ -19,7 +29,7 @@ const Card = ({ cardInfo }) => {
           <span>{cardInfo.City}</span>
         </div>
       </div>
-      <button>Book Now</button>
+      {isAdmain ? null : <button onClick={handleBook}>Book Now</button>}
     </div>
   );
 };

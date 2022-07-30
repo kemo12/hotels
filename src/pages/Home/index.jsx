@@ -3,6 +3,7 @@ import SearchBar from '../../components/SearchBar';
 import { useData } from './../../Hooks/DataContext';
 import Card from './../../components/Card';
 import './Home.css';
+import { Link } from 'react-router-dom';
 import Filter from '../../components/Filters';
 const Home = () => {
   const { data } = useData();
@@ -13,6 +14,9 @@ const Home = () => {
     <div className="homeContainer">
       <div className="homeTilte">
         <h1>Hotels</h1>
+        <Link className="reservations" to="/Reserved">
+          my reservations
+        </Link>
       </div>
       <div className="homeSearch">
         <SearchBar
@@ -32,7 +36,7 @@ const Home = () => {
       <div className="cardsContainer">
         {!noResult ? (
           (searchResult.length === 0 ? data : searchResult).map((card) => {
-            return <Card cardInfo={card} key={card.Name} />;
+            return <Card isAdmain={false} cardInfo={card} key={card.Name} />;
           })
         ) : (
           <div> there is no result</div>

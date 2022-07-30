@@ -1,0 +1,33 @@
+.AddContanier {
+  margin-left: 35%;
+  width: 30%;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  margin-top: 70px;
+  flex-direction: column;
+  text-align: center;
+}
+.AddContanier form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+.AddContanier form input {
+  height: 40px;
+  width: 90%;
+}
+.AddContanier form button {
+  width: 100px;
+  height: 40px;
+}
+.Link {
+  display: flex;
+  align-self: right;
+  margin-top: 5px;
+  margin-left: 5px;
+}

@@ -1,7 +1,7 @@
 .homeContainer {
   width: 90%;
   margin: 50px 5% 0px 5%;
-  border: 1px red solid;
+  border: 1px solid #000;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +10,10 @@
 .homeTilte {
   text-align: center;
   font-size: large;
+}
+.reservations {
+  display: flex;
+  margin-bottom: 20px;
 }
 .homeSearch {
   width: 70%;
@@ -20,7 +24,6 @@
 .searchFilter {
   margin-top: 10px;
   width: 70%;
-  border: 1px solid red;
 }
 .cardsContainer {
   margin-top: 10px;
@@ -29,5 +32,4 @@
   justify-content: space-around;
   align-items: center;
   width: 70%;
-  border: 1px solid red;
 }
